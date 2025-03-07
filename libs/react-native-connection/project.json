@@ -1,0 +1,45 @@
+{
+  "name": "react-native-connection",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/react-native-connection/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/rollup:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/react-native-connection",
+        "tsConfig": "libs/react-native-connection/tsconfig.lib.json",
+        "project": "libs/react-native-connection/package.json",
+        "entryFile": "libs/react-native-connection/src/index.ts",
+        "external": ["react/jsx-runtime", "react-native", "react", "react-dom", "jwt-decode", "@react-native-async-storage/async-storage", "axios"],
+        "rollupConfig": "@nx/react/plugins/bundle-rollup",
+        "assets": [
+          {
+            "glob": "libs/react-native-connection/README.md",
+            "input": ".",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/react-native-connection/**/*.{ts,tsx,js,jsx}",
+          "libs/react-native-connection/package.json"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/react-native-connection/jest.config.ts"
+      }
+    }
+  }
+}
